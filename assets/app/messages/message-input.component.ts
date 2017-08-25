@@ -5,5 +5,7 @@ import {Component} from "@angular/core";
     templateUrl: './message-input.component.html'
 })
 export class MessageInputComponent {
-
+    onSave(value: string) {
+        console.log(value);
+    }
 }
