@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+var jwt = require("jsonwebtoken");
 
 var Message = require('../models/message');
 
@@ -68,6 +69,17 @@ router.patch('/:id', function(req, res, next) {
    }) ;
 });
 
+router.use('/', function(req, res, next) {
+    jwt.verify(req.query.token, 'secret', function(err, decoded) {
+        if(err) {
+            return res.status(401).json({
+                title: 'Not authenticated',
+                error: err
+            })
+        }
+        next();
+    });
+});
 
 router.delete('/:id', function (req, res, next) {
     Message.findById(req.params.id, function(err, message) {
