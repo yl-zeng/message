@@ -21,15 +21,11 @@ import {MessageModule} from "./messages/message.module";
         AppComponent,
         AuthenticationComponent,
         HeaderComponent,
-        LogoutComponent,
-        SignupComponent,
-        SigninComponent,
         ErrorComponent
     ],
     imports: [
             BrowserModule,
             routing,
-            ReactiveFormsModule,
             HttpModule,
             MessageModule
     ],
