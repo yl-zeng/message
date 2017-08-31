@@ -18,6 +18,16 @@ export class MessageService {
         const headers = new Headers({'Content-Type': 'application/json'});
         const token = localStorage.getItem('token') ?
             '?token=' + localStorage.getItem('token') : '';
+        if(token === '') {
+            var error: object = {
+                title: 'Cannot save message',
+                error: {
+                    message: 'Please Sign in or Sign up'
+                }
+            };
+            this.errorService.handleError(error);
+            return Observable.throw(error);
+        }
         return this.http.post('http://localhost:3000/message' + token,body, {headers: headers})
             .map((response: Response) => {
                 const result = response.json();
